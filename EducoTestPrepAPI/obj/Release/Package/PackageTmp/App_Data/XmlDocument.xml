@@ -1,0 +1,1218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EducoTestPrepAPI</name>
+    </assembly>
+    <members>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(EducoTestPrepAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,EducoTestPrepAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="F:EducoTestPrepAPI.Models.PageBase.colSeperator">
+            <summary>
+            This block using to define for common variables contains DB col and row seperators
+            with Special characters
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetUserCourseInfo(EducoTestPrepAPI.Models.UserCourseCredential)">
+             <summary>
+            This api call takes user's course credential i.e.,  'userid' and 'sectionid'  and 
+            return user course details like 'TermId', 'Term_Name', 'CourseId', 'Course_Name', 'SectionId', 'Section_Name', 'Term_StartDate', 'Term_EndDate', 'Duration'  with 'status' and 'message' upon successful retrival of course information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retriving course information.
+             </summary>
+             <param name="userCourseCredential">User course retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course information",
+               "response": 
+                  {  
+                    "TermId": "",
+                    "Term_Name": "",
+                    "CourseId": "",
+                    "Course_Name": "",
+                    "SectionId": "",
+                    "Section_Name":"",
+                    "Term_StartDate": "",
+                    "Term_EndDate": "",
+                    "Duration":""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "User does not have access to section/Error while retriving course information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetCourseKDList(EducoTestPrepAPI.Models.UserCourseCredential)">
+             <summary>
+            This api call takes user's course kd credential i.e.,  'userid' and 'sectionid'  and 
+            returns user's course kdlist details like 'CourseName', 'KdList' info as 'CRLevelId', 'CRLevel_Name' with 'status' and 'message' upon successful retrival of course kd information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course kd information.
+             </summary>
+             <param name="userCourseCredential">User's course kd retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course kd list",
+               "response": 
+                  {  
+                     "CourseName" : "",
+                     "CourseList":
+                         {
+                             "CRLevelId": "",
+                             "CRLevel_Name": ""
+                         }
+                  }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "User does not have access to section/Error while retriving course kd list information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetKDModuleList(EducoTestPrepAPI.Models.UserCourseKDModulesCredential)">
+             <summary>
+            This api call takes user's course kd module credential i.e.,  'userid', 'sectionid' and 'kdid'  and 
+            return user course kd module list details like 'CRModule_LevelId', 'CRModule_Name' with 'status' and 'message' upon successful retrival of course kd module information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course kd module information.
+             </summary>
+             <param name="userCourseKDModulesCredential">User course kd module retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course kd module list",
+               "response": 
+                  {  
+                    "CRModule_LevelId": "",
+                    "CRModule_Name": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "User does not have access to section/Error while retriving course kd module list information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.UsersController.VerifyUserLogin(EducoTestPrepAPI.Models.UserCredential)">
+             <summary>
+            This api call takes user's credential i.e.,  'Email' and 'Password'  and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile', 'sectionid'  with 'status' and 'message' upon successful login.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
+             </summary>
+             <param name="userCredential">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully Login",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "mobile": "",
+                    "sectionid":""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Username and password do not match/Error while login"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.UsersController.GetForgotPassword(EducoTestPrepAPI.Models.UserCredentialForgetPassword)">
+             <summary>
+            This api call takes user's login id i.e.,  'Email' to retrive forgotten password and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'password' with 'status' and 'message' upon successful login.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
+             </summary>
+             <param name="userCredentialForgetPassword">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully Login",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "password": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Username does not exist/Error message"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.UsersController.RegisterGuestUser(EducoTestPrepAPI.Models.UserCredentialRegisterGuestUser)">
+             <summary>
+            This api call takes user's data i.e.,  'First Name', 'Last Name', 'Mobile Number', 'Email', 'Password', 'strImage', 'strImageType'  and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile', 'sectionid'  with 'status' and 'message' upon successful registration.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in registration.
+            Note: 'strImage' is in Base64String format and 'strImageType' is the extension of image i.e, jpg, png etc.
+             </summary>
+             <param name="userCredentialRegisterGuestUser">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "succesfully registered and login as guest. Also include message for image saving status and mail firing status.",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "mobile": "",
+                    "sectionid":""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Error message while registering the user's info and login"
+            }
+             </returns>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ResponseDocumentation">
+            <summary>
+            Gets the sample return tag value associated with the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.user_login(EducoTestPrepAPI.Models.UserCredential)">
+             <summary>
+            This api call takes user's credential i.e.,  'Email' and 'Password'  and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile'  with 'status' and 'message' upon successful login.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
+             </summary>
+             <param name="userCredential">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully Login",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "mobile": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Username and password do not match/Error while login"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetAssessmentList(System.String,System.String)">
+            <summary>
+            This Api call will fetch student's assessments list provided that the user is active.
+            </summary>
+            <param name="userLogInName">User Email id as login id.</param>
+            <param name="password">User password.</param>
+            <returns>If user exists, return a dataset of values (KDId, KDName, ModuleId, ModuleName, TestID, TestName, MaxAttempts, ActualAttempts, AllAttemptAvgTotScore,
+            MaxTestUserID, InitFlag, TestNumQues, TestSettingsMode, LastAttemptedID, TestType, SortOrder, TestMaxScoreObt, TestModuleId, Test_ModulePercent, 
+            LastAttemptPerScore, TestUser_IsEval, TestSettings_TestModeType, IsAutoPracticeTest, AutoPracticeTestID). 
+            Else if user does not exist, return a message "User Doesnot Exists" with status code "-1" 
+            in json, xml format.
+            </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetKdTestList(EducoTestPrepAPI.Models.UserAssessmentKdTestListCredential)">
+             <summary>
+            This api call takes user's course KDTest credential i.e.,  'userid', 'sectionid' and 'kdId'  and 
+            return user course KDTest list details like 'KDId', 'KDName', 'ModuleId','ModuleName', 'TestID', 'TestName', 'MaxAttempts', 'ActualAttempts', 'AllAttemptAvgTotScore', 'MaxTestUserID', 'InitFlag', 'TestNumQues', 'TestSettingsMode', 'LastAttemptedID', 'TestType', 'SortOrder', 'TestMaxScoreObt', 'TestModuleId', 'Test_ModulePercent', 'LastAttemptPerScore', 'TestUser_IsEval', 'TestSettings_TestModeType', 'IsAutoPracticeTest', 'AutoPracticeTestID' with 'status' and 'message' upon successful retrival of course KDTest list information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course KDTest information.
+             </summary>
+             <param name="userAssessmentKdTestListCredential">User course KDTest info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course KDTest list",
+               "response": 
+                  {  
+                    "KDId": "",
+                    "KDName": "",
+                    "ModuleId": "",
+                    "ModuleName": "",
+                    "TestID": "",
+                    "TestName": "",
+                    "MaxAttempts": "",
+                    "ActualAttempts": "",
+                    "AllAttemptAvgTotScore": "",
+                    "MaxTestUserID": "",
+                    "InitFlag": "",
+                    "TestNumQues": "",
+                    "TestSettingsMode": "",
+                    "LastAttemptedID": "",
+                    "TestType": "",
+                    "SortOrder": "",
+                    "TestMaxScoreObt": "",
+                    "TestModuleId": "",
+                    "Test_ModulePercent": "",
+                    "LastAttemptPerScore": "",
+                    "TestUser_IsEval": "",
+                    "TestSettings_TestModeType": "",
+                    "IsAutoPracticeTest": "",
+                    "AutoPracticeTestID": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "There are no tests for the specified course./No data found/Error while retriving course kd list information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetModuleTestList(EducoTestPrepAPI.Models.UserAssessmentModuleTestListCredential)">
+             <summary>
+            This api call takes user's course ModuleTest credential i.e.,  'userid', 'sectionid' and 'moduleId'  and 
+            return user course ModuleTest list details like 'KDId', 'KDName', 'ModuleId','ModuleName', 'TestID', 'TestName', 'MaxAttempts', 'ActualAttempts', 'AllAttemptAvgTotScore', 'MaxTestUserID', 'InitFlag', 'TestNumQues', 'TestSettingsMode', 'LastAttemptedID', 'TestType', 'SortOrder', 'TestMaxScoreObt', 'TestModuleId', 'Test_ModulePercent', 'LastAttemptPerScore', 'TestUser_IsEval', 'TestSettings_TestModeType', 'IsAutoPracticeTest', 'AutoPracticeTestID' with 'status' and 'message' upon successful retrival of course ModuleTest list information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course ModuleTest information.
+             </summary>
+             <param name="userAssessmentModuleTestListCredential">User course ModuleTest info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course ModuleTest list",
+               "response": 
+                  {  
+                    "KDId": "",
+                    "KDName": "",
+                    "ModuleId": "",
+                    "ModuleName": "",
+                    "TestID": "",
+                    "TestName": "",
+                    "MaxAttempts": "",
+                    "ActualAttempts": "",
+                    "AllAttemptAvgTotScore": "",
+                    "MaxTestUserID": "",
+                    "InitFlag": "",
+                    "TestNumQues": "",
+                    "TestSettingsMode": "",
+                    "LastAttemptedID": "",
+                    "TestType": "",
+                    "SortOrder": "",
+                    "TestMaxScoreObt": "",
+                    "TestModuleId": "",
+                    "Test_ModulePercent": "",
+                    "LastAttemptPerScore": "",
+                    "TestUser_IsEval": "",
+                    "TestSettings_TestModeType": "",
+                    "IsAutoPracticeTest": "",
+                    "AutoPracticeTestID": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "There are no tests for the specified course./No data found/Error while retriving course ModuleTest list information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetMockTestList(EducoTestPrepAPI.Models.UserAssessmentMockTestListCredential)">
+             <summary>
+            This api call takes user's Mock Test credential i.e.,  'userid', 'sectionid' and 
+            return user Mock Test list details like 'TestID', 'TestName', 'TestDate', 'MaxAttempts', 'ActualAttempts', 'AllAttemptAvgTotScore', 'TestAnsMode', 'TestAnsDate', 'TestResultMode', 'TestResultDate', 'MaxTestUserID', 'TestEndDate', 'TestApplTo', 'InitFlag', 'TestNumQues', 'TestTimeAllotted', 'TestTimeAppl', 'TestStatus', 'TestSettingsMode', 'LastAttemptedID', 'InstID', 'TzID', 'TestType', 'SortOrder', 'AttHelpText', 'EndDtHelpText', 'AllotedTimeHelpText', 'TestMaxScoreObt', 'Test_AtptDate', 'IsManAtempt', 'TestModuleId', 'Test_ModulePercent', 'LastAttemptPerScore', 'TestUser_IsEval', 'TestSettings_TestModeType', 'PswdMode	IsEval', 'GlobalPswd', 'IsAutoPracticeTest', 'AutoPracticeTestID', 'TestSettings_IsActive', 'TotalTimeSpent', 'Test_IsLabTest' with 'status' and 'message' upon successful retrival of Mock Test list information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of mock test information.
+             </summary>
+             <param name="userAssessmentMockTestListCredential">User Mock Test info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived Mock Test list",
+               "response": 
+                  {  
+                    "TestID": "",
+                    "TestName": "",
+                    "TestDate": "",
+                    "MaxAttempts": "",
+                    "ActualAttempts": "",
+                    "AllAttemptAvgTotScore": "",
+                    "TestAnsMode": "",
+                    "TestAnsDate": "",
+                    "TestResultMode": "",
+                    "TestResultDate": "",
+                    "MaxTestUserID": "",
+                    "TestEndDate": "",
+                    "TestApplTo": "",
+                    "InitFlag": "",
+                    "TestNumQues": "",
+                    "TestTimeAllotted": "",
+                    "TestTimeAppl": "",
+                    "TestStatus": "",
+                    "TestSettingsMode": "",
+                    "LastAttemptedID": "",
+                    "InstID": "",
+                    "TzID": "",
+                    "TestType": "",
+                    "SortOrder": "",
+                    "AttHelpText": "",
+                    "EndDtHelpText": "",
+                    "AllotedTimeHelpText": "",
+                    "HasPreRequisites": "",
+                    "TestMaxScoreObt": "",
+                    "Test_AtptDate": "",
+                    "IsManAtempt": "",
+                    "TestModuleId": "",
+                    "Test_ModulePercent": "",
+                    "LastAttemptPerScore": "",
+                    "TestUser_IsEval": "",
+                    "TestSettings_TestModeType": "",
+                    "PswdMode": "",
+                    "IsEval": "",
+                    "GlobalPswd": "",
+                    "IsAutoPracticeTest": "",
+                    "AutoPracticeTestID": "",
+                    "TestSettings_IsActive": "",
+                    "TotalTimeSpent": "",
+                    "Test_IsLabTest": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "There are no tests for the specified course./No data found/Error while retriving Mock Test list information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetTestInfo(EducoTestPrepAPI.Models.UserAssessmentTestInfoCredential)">
+             <summary>
+            This api call takes user's TestInfo credential i.e.,  'testid','userid', 'sectionid' and
+            return user Test Info details like 'TestId', 'Test_Name', 'Test_HeadName', 'Test_HeadDesc', 'Test_Type', 'Test_IsComp', 'Test_TestSettingID', 'Test_UserID', 'Test_Instructions', 'TestSettings_ApplTo', 'TestSettings_TestDate', 'TestSettings_TestMode', 'TestSettings_LoadType', 'TestSettings_LoadValue', 'TestSettings_ShowAnsAtEnd', 'TestSettings_AnsDate', 'TestSettings_DispResImm', 'TestSettings_ResDate', 'TestSettings_TimeAppl', 'TestSettings_TimeType', 'TestSettings_TotalTime', 'TestSettings_MrksAppl', 'TestSettings_NegMrksAppl', 'TestSettings_NegMrks', 'TestSettings_AnsToFwd', 'TestSettings_AllowBack', 'TestSettings_NoAtmpts', 'TestSettings_DynDispMode', 'TestSettings_UserID', 'TestSettings_AddToGrade', 'TestSettings_GradeType', 'TestSettings_LevelOrder', 'TestSettings_ChoiceAppl', 'TestSettings_totmarks', 'Test_Attachflag', 'TestSecLink_PswdMode', 'TestSecLink_GlobalPswd', 'TestSettings_DynDispFlag', 'TestSettings_QuesType', 'Test_IsAutoPracticeTest', 'Test_IsQuesEdit', 'Test_HasPreRequisite', 'Test_PreRequisiteID', 'Test_ModeID', 'TestSettings_IsActive', 'Test_AutoPracticeTestID', 'StudentName', 'Test_ModulePercent', 'Test_AttendancePercent', 'TestSettings_TestModeType', 'TestSecLink_TimedPswd', 'TestSecLink_TimedPswdFromDate', 'TestSecLink_TimedPswdToDate', 'Test_ModuleId', 'Test_MaxScore', 'Test_TotNoQuestion', 'QuesMarks', 'QuesHasHindiVer' with 'status' and 'message' upon successful retrival of Test information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of Test information.
+             </summary>
+             <param name="userAssessmentTestInfoCredential">User' Test info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived Test Info",
+               "response": 
+               {  
+               "TestId": "",
+               "Test_Name": "",
+               "Test_HeadName": "",
+               "Test_HeadDesc": "",
+               "Test_Type": "",
+               "Test_IsComp": "",
+               "Test_TestSettingID": "",
+               "Test_UserID": "",
+               "Test_Instructions": "",
+               "TestSettings_ApplTo": "",
+               "TestSettings_TestDate": "",
+               "TestSettings_TestMode": "",
+               "TestSettings_LoadType": "",
+               "TestSettings_LoadValue": "",
+               "TestSettings_ShowAnsAtEnd": "",
+               "TestSettings_AnsDate": "",
+               "TestSettings_DispResImm": "",
+               "TestSettings_ResDate": "",
+               "TestSettings_TimeAppl": "",
+               "TestSettings_TimeType": "",
+               "TestSettings_TotalTime": "",
+               "TestSettings_MrksAppl": "",
+               "TestSettings_NegMrksAppl": "",
+               "TestSettings_NegMrks": "",
+               "TestSettings_AnsToFwd": "",
+               "TestSettings_AllowBack": "",
+               "TestSettings_NoAtmpts": "",
+               "TestSettings_DynDispMode": "",
+               "TestSettings_UserID": "",
+               "TestSettings_AddToGrade": "",
+               "TestSettings_GradeType": "",
+               "TestSettings_LevelOrder": "",
+               "TestSettings_ChoiceAppl": "",
+               "TestSettings_totmarks": "",
+               "Test_Attachflag": "",
+               "TestSecLink_PswdMode": "",
+               "TestSecLink_GlobalPswd": "",
+               "TestSettings_DynDispFlag": "",
+               "TestSettings_QuesType": "",
+               "Test_IsAutoPracticeTest": "",
+               "Test_IsQuesEdit": "",
+               "Test_HasPreRequisite": "",
+               "Test_PreRequisiteID": "",
+               "Test_ModeID": "",
+               "TestSettings_IsActive": "",
+               "Test_AutoPracticeTestID": "",
+               "StudentName": "",
+               "Test_ModulePercent": "",
+               "Test_AttendancePercent": "",
+               "TestSettings_TestModeType": "",
+               "TestSecLink_TimedPswd": "",
+               "TestSecLink_TimedPswdFromDate": "",
+               "TestSecLink_TimedPswdToDate": "",
+               "Test_ModuleId": "",
+               "Test_MaxScore": "",
+               "Test_TotNoQuestion": "",
+               "QuesMarks": "",
+               "QuesHasHindiVer": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "There is no test info for the specified TestId./No data found/Error while retriving Test information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.InitiateTestPaper(EducoTestPrepAPI.Models.UserAssessmentInitiateTestPaperCredential)">
+             <summary>
+            This api call takes user's TestPaper Initialization credential i.e.,  'testid','userid', 'sectionid', 'lastTestUserId' and
+            return TestPaper's info like 'TestUserID', 'TimeMode', 'TotalTime', 'ResDispMode', 'TimeLeft', 'ResumeAppl', 'HeadName', 'HeadDesc', 'FeedBackActive', 'TotalTimeSpent', 'DispSoln', 'DispSolnMode', 'UserName', 'DynDispFlag', 'TestType', 'TestModeType', 'IsMultiTestPartEnabled', 'TryLaterQuestList', 'TestDeliveryOption', 'TotalMkrs', 'TotalMkrsObt', 'DispHint', 'IsAutoPracticeTest', 'NegMrksPer' 
+            and TestPart's info like 'QuesContID', 'QuesCont_Name', 'TotMarks, 'TotQuesCount', 'TotQuesResponded', 'PreAnsString', 'LastPageNo' with 'status' and 'message' upon successful retrival of TestPaper information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of TestPaper information.
+             </summary>
+             <param name="userAssessmentInitiateTestPaperCredential">User' TestPaper retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+            "status":"1",
+            "message":"Succesfully retrived TestPaper information",
+            "response":{
+            "TestPaper":[
+            {"TestUserID":"",
+            "TimeMode":"",
+            "TotalTime":"",
+            "ResDispMode":"",
+            "TimeLeft":"",
+            "ResumeAppl":"",
+            "HeadName":"",
+            "HeadDesc":"",
+            "FeedBackActive":"",
+            "TotalTimeSpent":"",
+            "DispSoln":"",
+            "DispSolnMode":"",
+            "UserName":"",
+            "DynDispFlag":"",
+            "TestType":"",
+            "TestModeType":"",
+            "IsMultiTestPartEnabled":"",
+            "TryLaterQuestList":"",
+            "TestDeliveryOption":"",
+            "TotalMkrs":"",
+            "TotalMkrsObt":"",
+            "DispHint":"",
+            "IsAutoPracticeTest":"",
+            "NegMrksPer":""}
+            ],
+            "TestPart":[
+            {"QuesContID":"","QuesCont_Name":"","TotMarks":"","TotQuesCount":"","TotQuesResponded":"","PreAnsString":"","LastPageNo":""}
+            ]
+            }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "There is no testpaper info for the specified TestId./No data found/Error while retriving TestPaper information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.DisplayTestQuestion(EducoTestPrepAPI.Models.UserAssessmentDisplayTestQuestionCredential)">
+             <summary>
+            This api call takes user's TestQuestion retrival credential i.e.,  'testuserid','quescontid', 'pgno' and
+            return TestQuestion's info like 'TestTotalMkrs', 'TestTotalMkrsObt', 'TotTestQuesResponded', 'TestQuesId', 'PageNo', 'DueTime', 'QuesTime', 'QuesConceptID', 'ConceptDesc', 'QuesId', 'QuesMarks', 'QuesMarksObt', 'EvalStatus', 'QuesType', 'HasImage', 'QuesDesc', 'QuesHint', 'DispHint', 'DispSoln', 'QuesSoln', 'QuesSolnVideo', 'DispSynonym'
+            and Option's info like 'QuesMultiChId', 'MainQuesId', 'AnsDesc', 'AnsSrlNo', 'AnsLabel', 'AnsComment', 'IsValidAns', 'HasAnsImage', 'AnsFormat' with 'status' and 'message' upon successful retrival of TestQuestion information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of TestQuestion information.
+             </summary>
+             <param name="userAssessmentDisplayTestQuestionCredential">User' TestQuestion retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+            "status":"1",
+            "message":"Succesfully retrived TestQuestion information",
+            "response":{
+            "Question":[
+            {"TestTotalMkrs":"",
+            "TestTotalMkrsObt":"",
+            "TotTestQuesResponded":"",
+            "TestQuesId":"",
+            "PageNo":"",
+            "DueTime":"",
+            "QuesTime":"",
+            "QuesConceptID":"",
+            "ConceptDesc":"",
+            "QuesId":"",
+            "QuesMarks":"",
+            "QuesMarksObt":"",
+            "EvalStatus":"",
+            "QuesType":"",
+            "HasImage":"",
+            "QuesDesc":"",
+            "QuesHint":"",
+            "DispHint":"",
+            "DispSoln":"",
+            "QuesSoln":"",
+            "QuesSolnVideo":"",
+            "DispSynonym":""}
+            ],
+            "Option":[
+            {"QuesMultiChId":"","MainQuesId":"","AnsDesc":"","AnsSrlNo":"","AnsLabel":"","AnsComment":"","IsValidAns":"","HasAnsImage":"","AnsFormat":""}
+            ]
+            }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "There is no TestQuestion info for the specified testuserid, contid, pgno./No data found/Error while retriving TestQuestion information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.SubmitTestQuestion(EducoTestPrepAPI.Models.UserAssessmentSubmitTestQuestionCredential)">
+             <summary>
+            This api call takes user's TestQuestion submission credential i.e.,  'testuserid','contid', 'testdata','pgno', 'timespent','resdata', 'totaltimespent','sectionId', 'CallReference' and
+            return 'status' and 'message' upon successful submission of question information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in submission of question.
+            Note: CallReference = 0 for submission of question, CallReference = 1 for submission of question and assessment,  CallReference = 2 for submission of question and assessment in save and resume later mode.
+             </summary>
+             <param name="userAssessmentSubmitTestQuestionCredential">User' Question submission credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+            "status":"1",
+            "message":"Question has been successfully submited."
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "Error message while submitting question information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetTestAttemptResult(EducoTestPrepAPI.Models.UserAssessmentTestAttemptResultCredential)">
+             <summary>
+            This api call takes user's TestAttemptResult credential i.e., 'TestUserID', 'SectionID' and
+            return TestAttemptResult Info that include TestResult and TestResultByPart. TestResult detail includes 'TestUserID', 'TestUser_TotMrks', 'TestUser_TotMrksObt', 'TestUser_TestDate', 'TimeSpent', 'TestSettings_NegMrksAppl', 'TestSettings_NegMrks', 'QuesMarks', 'Practice' and TestResultByPart detail includes 'TestUserTestPartID', 'TestUserTestPart_TestContID', 'TestUserTestPart_ContName', 'TestUserTestPart_TotMrks', 'TestUserTestPart_TotMrksObt', 'TestUserTestPart_TotQuesCount', 'TestUserTestPart_TotCurrQues', 'TestUserTestPart_TotInCurrQues', 'TestUserTestPart_TotParticalCurrQues' with 'status' and 'message' upon successful retrival of TestAttemptResult information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of TestAttemptResult information.
+             </summary>
+             <param name="userAssessmentTestAttemptResultCredential">User' TestAttemptResult info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived TestAttemptResult information",
+               "response":
+               {  
+                 "TestResult":[{
+                     "TestUserID":"",
+                     "TestUser_TotMrks":"",
+                     "TestUser_TotMrksObt":"",
+                     "TestUser_TestDate":"",
+                     "TimeSpent":"",
+                     "TestSettings_NegMrksAppl":"",
+                     "TestSettings_NegMrks":"",
+                     "QuesMarks":"",
+                     "Practice":""
+                     }],
+                 "TestResultByPart":[{
+                     "TestUserTestPartID":"",
+                     "TestUserTestPart_TestContID":"",
+                     "TestUserTestPart_ContName":"",
+                     "TestUserTestPart_TotMrks":"",
+                     "TestUserTestPart_TotMrksObt":"",
+                     "TestUserTestPart_TotQuesCount":"",
+                     "TestUserTestPart_TotCurrQues":"",
+                     "TestUserTestPart_TotInCurrQues":"",
+                     "TestUserTestPart_TotParticalCurrQues":"",
+                     }]
+              }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "There is no record for this test attempt./No data found/Error while retriving TestAttemptResult information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetTestAttemptQuesStatus(EducoTestPrepAPI.Models.UserAssessmentTestAttemptQuesStatusCredential)">
+             <summary>
+            This api call takes user's TestAttemptQuesStatus credential i.e., 'TestUserTestPartID' and
+            return TestAttemptQuesStatus Info that include TestAttemptQuesStatus and TestAttemptQuesStatusSummary. TestAttemptQuesStatus detail includes 'RowID', 'TestQuesID', 'Ques_EvalStatus', 'Ques_MaxMarks', 'Ques_ObtMarks', 'Ques_Desc', 'Ques_LevelID', 'CRLevel_Name', 'Ques_ConceptDesc', 'ModuleName', 'Ques_SlnVedio', 'Ques_LanguageType'
+            and TestAttemptQuesStatusSummary detail includes 'TestType', 'TotalQuesCount', 'CorrectAns', 'INCorrectAns', 'Notattempted', 'CRLevel_Name', 'CRLevelID', 'CRLevel_ParentId', 'IsParent', 'Sectionvideo' with 'status' and 'message' upon successful retrival of TestAttemptQuesStatus information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of TestAttemptQuesStatus information.
+             </summary>
+             <param name="userAssessmentTestAttemptQuesStatusCredential">User' TestAttemptQuesStatus info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived TestAttemptQuesStatus information",
+               "response":
+               {  
+                 "TestAttemptQuesStatus":[{              
+                     "RowID": "",        
+                     "TestQuesID": "",        
+                     "Ques_EvalStatus": "",        
+                     "Ques_MaxMarks": "",        
+                     "Ques_ObtMarks": "",        
+                     "Ques_Desc": "",        
+                     "Ques_LevelID": "",        
+                     "CRLevel_Name": "",        
+                     "Ques_ConceptDesc": "",        
+                     "ModuleName": "",        
+                     "Ques_SlnVedio": "",        
+                     "Ques_LanguageType": ""
+                     }],
+                 "TestAttemptQuesStatusSummary":[{
+                     "TestType": "",
+            			"TotalQuesCount": "",        
+            			"CorrectAns": "",        
+            			"INCorrectAns": "",        
+            			"Notattempted": "",        
+            			"CRLevel_Name": "",        
+            			"CRLevelID": "",        
+            			"CRLevel_ParentId": "",        
+            			"IsParent": "",        
+            			"Sectionvideo": ""
+                     }]
+              }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "There is no record for this test attempt./No data found/Error while retriving TestAttemptQuesStatus information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetDispStudTestResults(EducoTestPrepAPI.Models.UserAssessmentDispStudTestResultsCredential)">
+             <summary>
+            This api call takes user's DispStudTestResults credential i.e., 'TestUserTestPartID', 'TestQuesID' and
+            return TestResults Info for the QuestionId that include Test_User, Test_Ques, Ques_Main, Ques_MultipleChoice, Test_UserAns, DispSolnRes,QuesLangType and QuesEvalStatus.
+            Test_User detail includes 'RecID', 'TestQuesID', 'ContID', 'QuesType', 'Pgno', 'ContName', 'ContDesc', 'SecTime', 'QuesTime', 'Ques_ConceptDtlID', 'Ques_ConceptDesc', 'Ques_CRLevelID', 'Ques_DispCalc', 'QuesSubContID', 'QuesSubContName', 'Ques_ConceptType'.
+            Test_Ques detail includes 'intPkVal', 'TestQues_ContID', 'TestQues_QuesID', 'TestQues_Marks', 'MarksObtained', 'EvalStatus', 'TestQues_Time', 'AnsDispMode', 'TestQues_ModuleId', 'TestQues_Qrclvl_Crleveid', 'TestQues_Qcrlvl_conceptid'.
+            Ques_Main detail includes 'intPkVal', 'TestQues_ContID', 'TestQues_QuesID', 'TestQues_Marks', 'MarksObtained', 'EvalStatus', 'TestQues_Time', 'AnsDispMode', 'TestQues_ModuleId', 'TestQues_Qrclvl_Crleveid', 'TestQues_Qcrlvl_conceptid'.
+            Ques_MultipleChoice detail includes 'QuesMultiChID', 'QuesMultiCh_QuesID', 'QuesMultiCh_AnsDesc', 'QuesMultiCh_SrlNo', 'QuesMultiCh_AnsLbl', 'QuesMultiCh_AnsComt', 'QuesMultiCh_ValidAns', 'QuesMultiCh_UpldAnsImg', 'QuesMultiCh_MultiValidAns', 'QuesMultiCH_AnsOptFormat', 'QuesMultiCh_MrksWeight', 'QuesMultiCh_HindiAnsDesc'.
+            Test_UserAns detail includes 'TestQuesID', 'QuesMultiChID', 'ValidAns', 'AnsText'.
+            DispSolnRes detail includes 'DispSolnRes'.
+            QuesLangType detail includes 'QuesLangType' and
+            QuesEvalStatus detail includes 'RowID', 'TestQuesID', 'Ques_EvalStatus'
+            with 'status' and 'message' upon successful retrival of DispStudTestResults information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of DispStudTestResults information.
+             </summary>
+             <param name="userAssessmentDispStudTestResultsCredential">User' DispStudTestResults info retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived DispStudTestResults information",
+               "response":
+               {  
+                 "Test_User":[{              
+            			"RecID": "",        
+            			"TestQuesID": "",        
+            			"ContID": "",        
+            			"QuesType": "",        
+            			"Pgno": "",        
+            			"ContName": "",        
+            			"ContDesc": "",        
+            			"SecTime": "",        
+            			"QuesTime": "",        
+            			"Ques_ConceptDtlID": "",        
+            			"Ques_ConceptDesc": "",        
+            			"Ques_CRLevelID": "",        
+            			"Ques_DispCalc": "",        
+            			"QuesSubContID": "",        
+            			"QuesSubContName": "",        
+            			"Ques_ConceptType": ""
+                     }],
+                 "Test_Ques":[{
+            			"intPkVal": "",        
+            			"TestQues_ContID": "",        
+            			"TestQues_QuesID": "",        
+            			"TestQues_Marks": "",        
+            			"MarksObtained": "",        
+            			"EvalStatus": "",        
+            			"TestQues_Time": "",        
+            			"AnsDispMode": "",        
+            			"TestQues_ModuleId": "",        
+            			"TestQues_Qrclvl_Crleveid": "",        
+            			"TestQues_Qcrlvl_conceptid": ""
+                     }],
+                 "Ques_Main":[{
+            			"Ques_HasImg": "",        
+            			"Ques_Desc": "",        
+            			"Ques_ResDesc": "",        
+            			"Ques_UserID": "",        
+            			"HintHTML": "",        
+            			"DispHint": "",        
+            			"DispSoln": "",        
+            			"slnHTML": "",        
+            			"SlnVedio": "",        
+            			"IsSynonym": "",        
+            			"Ques_IsMultiLingual": "",        
+            			"Ques_HindiDesc": ""
+                     }],
+                 "Ques_MultipleChoice":[{
+            			"QuesMultiChID": "",        
+                     "QuesMultiCh_QuesID": "",        
+                     "QuesMultiCh_AnsDesc": "",        
+                     "QuesMultiCh_SrlNo": "",        
+                     "QuesMultiCh_AnsLbl": "",        
+                     "QuesMultiCh_AnsComt": "",        
+                     "QuesMultiCh_ValidAns": "",        
+                     "QuesMultiCh_UpldAnsImg": "",        
+                     "QuesMultiCh_MultiValidAns": "",        
+                     "QuesMultiCH_AnsOptFormat": "",        
+                     "QuesMultiCh_MrksWeight": "",        
+                     "QuesMultiCh_HindiAnsDesc": ""
+                     }],
+                 "Test_UserAns":[{
+            			"TestQuesID": "",        
+            			"QuesMultiChID": "",       
+            			"ValidAns": "",        
+            			"AnsText": ""
+                     }],
+                 "DispSolnRes":[{
+            			"DispSolnRes": ""
+                     }],
+                 "QuesLangType":[{
+            			"QuesLangType": ""
+                     }],
+                 "QuesEvalStatus":[{
+            			"RowID": "",        
+            			"TestQuesID": "",        
+            			"Ques_EvalStatus": ""
+                     }]
+              }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "There is no record for this test attempt./No data found/Error while retriving DispStudTestResults information"
+            }
+             </returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.GetDispStudTestResults_PartResultData(System.String,System.Data.DataSet)">
+            <summary>
+            GetDispStudTestResults_PartResultData(string TestResultPartName, DataSet dst)
+            </summary>
+            <param name="TestResultPartName"></param>
+            <param name="dst"></param>
+            <returns>anynomous object</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,EducoTestPrepAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,EducoTestPrepAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create one using <see cref="T:EducoTestPrepAPI.Areas.HelpPage.ObjectGenerator"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},EducoTestPrepAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.IResponseDocumentationProvider">
+            <summary>
+            This interface is added to read the return tag value in the API description in controller action method.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:UserCredentialModelBinder">
+            <summary>
+            Summary description for UserCredentialModelBinder
+            </summary>
+        </member>
+    </members>
+</doc>
