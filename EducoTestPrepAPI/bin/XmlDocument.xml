@@ -4,10 +4,279 @@
         <name>EducoTestPrepAPI</name>
     </assembly>
     <members>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.SampleDirection">
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
-            Indicates whether the sample is used for request or response
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
             </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ResponseDocumentation">
+            <summary>
+            Gets the sample return tag value associated with the API.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,EducoTestPrepAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,EducoTestPrepAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create one using <see cref="T:EducoTestPrepAPI.Areas.HelpPage.ObjectGenerator"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},EducoTestPrepAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
         </member>
         <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey">
             <summary>
@@ -74,9 +343,20 @@
             Gets the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
             </summary>
         </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.Controllers.HelpController">
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.ImageSample">
             <summary>
-            The controller that will handle requests for the help page.
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
             </summary>
         </member>
         <member name="T:EducoTestPrepAPI.Areas.HelpPage.ObjectGenerator">
@@ -100,230 +380,31 @@
             <param name="type">The type.</param>
             <returns>An object of the given type.</returns>
         </member>
-        <member name="F:EducoTestPrepAPI.Models.PageBase.colSeperator">
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.SampleDirection">
             <summary>
-            This block using to define for common variables contains DB col and row seperators
-            with Special characters
+            Indicates whether the sample is used for request or response
             </summary>
-        </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.InvalidSample">
-            <summary>
-            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
-            </summary>
-        </member>
-        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetUserCourseInfo(EducoTestPrepAPI.Models.UserCourseCredential)">
-             <summary>
-            This api call takes user's course credential i.e.,  'userid' and 'sectionid'  and 
-            return user course details like 'TermId', 'Term_Name', 'CourseId', 'Course_Name', 'SectionId', 'Section_Name', 'Term_StartDate', 'Term_EndDate', 'Duration'  with 'status' and 'message' upon successful retrival of course information.
-            Incase of failure, it returns only 'status' and 'message'.
-            'Status':'1'  means Success and  'Status':'0'  means failure/error in retriving course information.
-             </summary>
-             <param name="userCourseCredential">User course retrival credential to specify in request body in json format.</param>
-             <returns>
-            Success:
-            {
-               "status": 1,
-               "message": "Succesfully retrived course information",
-               "response": 
-                  {  
-                    "TermId": "",
-                    "Term_Name": "",
-                    "CourseId": "",
-                    "Course_Name": "",
-                    "SectionId": "",
-                    "Section_Name":"",
-                    "Term_StartDate": "",
-                    "Term_EndDate": "",
-                    "Duration":""
-               }
-            Error:
-            {
-            "status": 0,
-            "message": "User does not have access to section/Error while retriving course information"
-            }
-             </returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetCourseKDList(EducoTestPrepAPI.Models.UserCourseCredential)">
-             <summary>
-            This api call takes user's course kd credential i.e.,  'userid' and 'sectionid'  and 
-            returns user's course kdlist details like 'CourseName', 'KdList' info as 'CRLevelId', 'CRLevel_Name' with 'status' and 'message' upon successful retrival of course kd information.
-            Incase of failure, it returns only 'status' and 'message'.
-            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course kd information.
-             </summary>
-             <param name="userCourseCredential">User's course kd retrival credential to specify in request body in json format.</param>
-             <returns>
-            Success:
-            {
-               "status": 1,
-               "message": "Succesfully retrived course kd list",
-               "response": 
-                  {  
-                     "CourseName" : "",
-                     "CourseList":
-                         {
-                             "CRLevelId": "",
-                             "CRLevel_Name": ""
-                         }
-                  }
-            }
-            Error:
-            {
-            "status": 0,
-            "message": "User does not have access to section/Error while retriving course kd list information"
-            }
-             </returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetKDModuleList(EducoTestPrepAPI.Models.UserCourseKDModulesCredential)">
-             <summary>
-            This api call takes user's course kd module credential i.e.,  'userid', 'sectionid' and 'kdid'  and 
-            return user course kd module list details like 'CRModule_LevelId', 'CRModule_Name' with 'status' and 'message' upon successful retrival of course kd module information.
-            Incase of failure, it returns only 'status' and 'message'.
-            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course kd module information.
-             </summary>
-             <param name="userCourseKDModulesCredential">User course kd module retrival credential to specify in request body in json format.</param>
-             <returns>
-            Success:
-            {
-               "status": 1,
-               "message": "Succesfully retrived course kd module list",
-               "response": 
-                  {  
-                    "CRModule_LevelId": "",
-                    "CRModule_Name": ""
-               }
-            Error:
-            {
-            "status": 0,
-            "message": "User does not have access to section/Error while retriving course kd module list information"
-            }
-             </returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Controllers.UsersController.VerifyUserLogin(EducoTestPrepAPI.Models.UserCredential)">
-             <summary>
-            This api call takes user's credential i.e.,  'Email' and 'Password'  and 
-            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile', 'sectionid'  with 'status' and 'message' upon successful login.
-            Incase of failure, it returns only 'status' and 'message'.
-            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
-             </summary>
-             <param name="userCredential">User credential to specify in request body in json format.</param>
-             <returns>
-            Success:
-            {
-               "status": 1,
-               "message": "Succesfully Login",
-               "response": 
-                  {  
-                    "userId": "",
-                    "first_name": "",
-                    "last_name": "",
-                    "email": "",
-                    "mobile": "",
-                    "sectionid":""
-               }
-            Error:
-            {
-            "status": 0,
-            "message": "Username and password do not match/Error while login"
-            }
-             </returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Controllers.UsersController.GetForgotPassword(EducoTestPrepAPI.Models.UserCredentialForgetPassword)">
-             <summary>
-            This api call takes user's login id i.e.,  'Email' to retrive forgotten password and 
-            return user details like 'userId', 'first_name', 'last_name', 'email', 'password' with 'status' and 'message' upon successful login.
-            Incase of failure, it returns only 'status' and 'message'.
-            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
-             </summary>
-             <param name="userCredentialForgetPassword">User credential to specify in request body in json format.</param>
-             <returns>
-            Success:
-            {
-               "status": 1,
-               "message": "Succesfully Login",
-               "response": 
-                  {  
-                    "userId": "",
-                    "first_name": "",
-                    "last_name": "",
-                    "email": "",
-                    "password": ""
-               }
-            Error:
-            {
-            "status": 0,
-            "message": "Username does not exist/Error message"
-            }
-             </returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Controllers.UsersController.RegisterGuestUser(EducoTestPrepAPI.Models.UserCredentialRegisterGuestUser)">
-             <summary>
-            This api call takes user's data i.e.,  'First Name', 'Last Name', 'Mobile Number', 'Email', 'Password', 'strImage', 'strImageType'  and 
-            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile', 'sectionid'  with 'status' and 'message' upon successful registration.
-            Incase of failure, it returns only 'status' and 'message'.
-            'Status':'1'  means Success and  'Status':'0'  means failure/error in registration.
-            Note: 'strImage' is in Base64String format and 'strImageType' is the extension of image i.e, jpg, png etc.
-             </summary>
-             <param name="userCredentialRegisterGuestUser">User credential to specify in request body in json format.</param>
-             <returns>
-            Success:
-            {
-               "status": 1,
-               "message": "succesfully registered and login as guest. Also include message for image saving status and mail firing status.",
-               "response": 
-                  {  
-                    "userId": "",
-                    "first_name": "",
-                    "last_name": "",
-                    "email": "",
-                    "mobile": "",
-                    "sectionid":""
-               }
-            Error:
-            {
-            "status": 0,
-            "message": "Error message while registering the user's info and login"
-            }
-             </returns>
         </member>
         <member name="T:EducoTestPrepAPI.Areas.HelpPage.TextSample">
             <summary>
             This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
             </summary>
         </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel">
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.IResponseDocumentationProvider">
             <summary>
-            The model that represents an API displayed on the help page.
+            This interface is added to read the return tag value in the API description in controller action method.
             </summary>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+        <member name="T:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider">
             <summary>
-            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
             </summary>
         </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+        <member name="M:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
             <summary>
-            Gets or sets the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
-            <summary>
-            Gets the sample requests associated with the API.
-            </summary>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
-            <summary>
-            Gets the sample responses associated with the API.
-            </summary>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ResponseDocumentation">
-            <summary>
-            Gets the sample return tag value associated with the API.
-            </summary>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
-            <summary>
-            Gets the error messages associated with this model.
-            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
         </member>
         <member name="M:EducoTestPrepAPI.Controllers.AssessmentController.user_login(EducoTestPrepAPI.Models.UserCredential)">
              <summary>
@@ -948,265 +1029,184 @@
             <param name="dst"></param>
             <returns>anynomous object</returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
-            <summary>
-            Sets the documentation provider for help page.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="documentationProvider">The documentation provider.</param>
+        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetUserCourseInfo(EducoTestPrepAPI.Models.UserCourseCredential)">
+             <summary>
+            This api call takes user's course credential i.e.,  'userid' and 'sectionid'  and 
+            return user course details like 'TermId', 'Term_Name', 'CourseId', 'Course_Name', 'SectionId', 'Section_Name', 'Term_StartDate', 'Term_EndDate', 'Duration'  with 'status' and 'message' upon successful retrival of course information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retriving course information.
+             </summary>
+             <param name="userCourseCredential">User course retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course information",
+               "response": 
+                  {  
+                    "TermId": "",
+                    "Term_Name": "",
+                    "CourseId": "",
+                    "Course_Name": "",
+                    "SectionId": "",
+                    "Section_Name":"",
+                    "Term_StartDate": "",
+                    "Term_EndDate": "",
+                    "Duration":""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "User does not have access to section/Error while retriving course information"
+            }
+             </returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
-            <summary>
-            Sets the objects that will be used by the formatters to produce sample requests/responses.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sampleObjects">The sample objects.</param>
+        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetCourseKDList(EducoTestPrepAPI.Models.UserCourseCredential)">
+             <summary>
+            This api call takes user's course kd credential i.e.,  'userid' and 'sectionid'  and 
+            returns user's course kdlist details like 'CourseName', 'KdList' info as 'CRLevelId', 'CRLevel_Name' with 'status' and 'message' upon successful retrival of course kd information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course kd information.
+             </summary>
+             <param name="userCourseCredential">User's course kd retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course kd list",
+               "response": 
+                  {  
+                     "CourseName" : "",
+                     "CourseList":
+                         {
+                             "CRLevelId": "",
+                             "CRLevel_Name": ""
+                         }
+                  }
+            }
+            Error:
+            {
+            "status": 0,
+            "message": "User does not have access to section/Error while retriving course kd list information"
+            }
+             </returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
-            <summary>
-            Sets the sample request directly for the specified media type and action.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sample">The sample request.</param>
-            <param name="mediaType">The media type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
+        <member name="M:EducoTestPrepAPI.Controllers.UserCourseController.GetKDModuleList(EducoTestPrepAPI.Models.UserCourseKDModulesCredential)">
+             <summary>
+            This api call takes user's course kd module credential i.e.,  'userid', 'sectionid' and 'kdid'  and 
+            return user course kd module list details like 'CRModule_LevelId', 'CRModule_Name' with 'status' and 'message' upon successful retrival of course kd module information.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in retrival of course kd module information.
+             </summary>
+             <param name="userCourseKDModulesCredential">User course kd module retrival credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully retrived course kd module list",
+               "response": 
+                  {  
+                    "CRModule_LevelId": "",
+                    "CRModule_Name": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "User does not have access to section/Error while retriving course kd module list information"
+            }
+             </returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
-            <summary>
-            Sets the sample request directly for the specified media type and action with parameters.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sample">The sample request.</param>
-            <param name="mediaType">The media type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-            <param name="parameterNames">The parameter names.</param>
+        <member name="M:EducoTestPrepAPI.Controllers.UsersController.VerifyUserLogin(EducoTestPrepAPI.Models.UserCredential)">
+             <summary>
+            This api call takes user's credential i.e.,  'Email' and 'Password'  and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile', 'sectionid'  with 'status' and 'message' upon successful login.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
+             </summary>
+             <param name="userCredential">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully Login",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "mobile": "",
+                    "sectionid":""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Username and password do not match/Error while login"
+            }
+             </returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
-            <summary>
-            Sets the sample request directly for the specified media type of the action.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sample">The sample response.</param>
-            <param name="mediaType">The media type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
+        <member name="M:EducoTestPrepAPI.Controllers.UsersController.GetForgotPassword(EducoTestPrepAPI.Models.UserCredentialForgetPassword)">
+             <summary>
+            This api call takes user's login id i.e.,  'Email' to retrive forgotten password and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'password' with 'status' and 'message' upon successful login.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in login.
+             </summary>
+             <param name="userCredentialForgetPassword">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "Succesfully Login",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "password": ""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Username does not exist/Error message"
+            }
+             </returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
-            <summary>
-            Sets the sample response directly for the specified media type of the action with specific parameters.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sample">The sample response.</param>
-            <param name="mediaType">The media type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-            <param name="parameterNames">The parameter names.</param>
+        <member name="M:EducoTestPrepAPI.Controllers.UsersController.RegisterGuestUser(EducoTestPrepAPI.Models.UserCredentialRegisterGuestUser)">
+             <summary>
+            This api call takes user's data i.e.,  'First Name', 'Last Name', 'Mobile Number', 'Email', 'Password', 'strImage', 'strImageType'  and 
+            return user details like 'userId', 'first_name', 'last_name', 'email', 'mobile', 'sectionid'  with 'status' and 'message' upon successful registration.
+            Incase of failure, it returns only 'status' and 'message'.
+            'Status':'1'  means Success and  'Status':'0'  means failure/error in registration.
+            Note: 'strImage' is in Base64String format and 'strImageType' is the extension of image i.e, jpg, png etc.
+             </summary>
+             <param name="userCredentialRegisterGuestUser">User credential to specify in request body in json format.</param>
+             <returns>
+            Success:
+            {
+               "status": 1,
+               "message": "succesfully registered and login as guest. Also include message for image saving status and mail firing status.",
+               "response": 
+                  {  
+                    "userId": "",
+                    "first_name": "",
+                    "last_name": "",
+                    "email": "",
+                    "mobile": "",
+                    "sectionid":""
+               }
+            Error:
+            {
+            "status": 0,
+            "message": "Error message while registering the user's info and login"
+            }
+             </returns>
         </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+        <member name="F:EducoTestPrepAPI.Models.PageBase.colSeperator">
             <summary>
-            Sets the sample directly for all actions with the specified type and media type.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sample">The sample.</param>
-            <param name="mediaType">The media type.</param>
-            <param name="type">The parameter type or return type of an action.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
-            <summary>
-            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
-            The help page will use this information to produce more accurate request samples.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="type">The type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
-            <summary>
-            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
-            The help page will use this information to produce more accurate request samples.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="type">The type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-            <param name="parameterNames">The parameter names.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
-            <summary>
-            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
-            The help page will use this information to produce more accurate response samples.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="type">The type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
-            <summary>
-            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action. 
-            The help page will use this information to produce more accurate response samples.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="type">The type.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-            <param name="parameterNames">The parameter names.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
-            <summary>
-            Gets the help page sample generator.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <returns>The help page sample generator.</returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator)">
-            <summary>
-            Sets the help page sample generator.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="sampleGenerator">The help page sample generator.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
-            <summary>
-            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
-            </summary>
-            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
-            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
-            <returns>
-            An <see cref="T:EducoTestPrepAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
-            </returns>
-        </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator">
-            <summary>
-            This class will generate the samples for the help page.
-            </summary>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
-            </summary>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
-            <summary>
-            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
-            </summary>
-            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
-            <returns>The samples keyed by media type.</returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
-            <summary>
-            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
-            </summary>
-            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
-            <returns>The samples keyed by media type.</returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,EducoTestPrepAPI.Areas.HelpPage.SampleDirection)">
-            <summary>
-            Gets the request or response body samples.
-            </summary>
-            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
-            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
-            <returns>The samples keyed by media type.</returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,EducoTestPrepAPI.Areas.HelpPage.SampleDirection)">
-            <summary>
-            Search for samples that are provided directly through <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
-            </summary>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-            <param name="parameterNames">The parameter names.</param>
-            <param name="type">The CLR type.</param>
-            <param name="formatter">The formatter.</param>
-            <param name="mediaType">The media type.</param>
-            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
-            <returns>The sample that matches the parameters.</returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
-            <summary>
-            Gets the sample object that will be serialized by the formatters. 
-            First, it will look at the <see cref="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create one using <see cref="T:EducoTestPrepAPI.Areas.HelpPage.ObjectGenerator"/>.
-            </summary>
-            <param name="type">The type.</param>
-            <returns>The sample object.</returns>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},EducoTestPrepAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
-            <summary>
-            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
-            </summary>
-            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
-            <param name="controllerName">Name of the controller.</param>
-            <param name="actionName">Name of the action.</param>
-            <param name="parameterNames">The parameter names.</param>
-            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
-            <param name="formatters">The formatters.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
-            <summary>
-            Writes the sample object using formatter.
-            </summary>
-            <param name="formatter">The formatter.</param>
-            <param name="value">The value.</param>
-            <param name="type">The type.</param>
-            <param name="mediaType">Type of the media.</param>
-            <returns></returns>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
-            <summary>
-            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
-            </summary>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
-            <summary>
-            Gets the objects that are used directly as samples for certain actions.
-            </summary>
-        </member>
-        <member name="P:EducoTestPrepAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
-            <summary>
-            Gets the objects that are serialized as samples by the supported formatters.
-            </summary>
-        </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.IResponseDocumentationProvider">
-            <summary>
-            This interface is added to read the return tag value in the API description in controller action method.
-            </summary>
-        </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider">
-            <summary>
-            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
-            </summary>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
-            </summary>
-            <param name="documentPath">The physical path to XML document.</param>
-        </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.ImageSample">
-            <summary>
-            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
-            </summary>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:EducoTestPrepAPI.Areas.HelpPage.ImageSample"/> class.
-            </summary>
-            <param name="src">The URL of an image.</param>
-        </member>
-        <member name="M:EducoTestPrepAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
-            <summary>
-            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
-            </summary>
-            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
-            <returns>The ID as a string.</returns>
-        </member>
-        <member name="T:EducoTestPrepAPI.Areas.HelpPage.HelpPageConfig">
-            <summary>
-            Use this class to customize the Help Page.
-            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
-            or you can provide the samples for the requests/responses.
+            This block using to define for common variables contains DB col and row seperators
+            with Special characters
             </summary>
         </member>
         <member name="T:UserCredentialModelBinder">
